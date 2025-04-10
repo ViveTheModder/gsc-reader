@@ -1,0 +1,55 @@
+prop-id,func-id,name,param-1,param-2,param-3,param-4
+0048,0013,Replace Z-Item #1
+0048,0014,Replace Z-Item #1
+0049,0013,Replace Z-Item #2
+0049,0014,Replace Z-Item #2
+0050,0013,Replace Z-Item #3
+0050,0014,Replace Z-Item #3
+0051,0013,Replace Z-Item #4
+0051,0014,Replace Z-Item #4
+0052,0013,Replace Z-Item #5
+0052,0014,Replace Z-Item #5
+0053,0013,Replace Z-Item #6
+0053,0014,Replace Z-Item #6
+0054,0013,Replace Z-Item #7
+0054,0014,Replace Z-Item #7
+0066,0013,Add Blast Stocks
+0066,0014,Add Blast Stocks
+0067,0013,Assign Properties to Character
+0067,0014,Assign Properties to Character
+0067,1302,Text Outline Color
+0070,0013,Add Ki
+0070,0014,Add Ki
+0072,0013,Add Health
+0072,0014,Add Health
+0073,0013,Assign Ki
+0073,0014,Assign Ki
+0079,1302,Text Outline Size
+0084,1302,Symbol
+0087,1001,Change Fade-Out Color to White
+0097,0007,Scene Link,cond,num
+0097,1302,Text Size
+0098,0013,Assign Blast Stocks
+0098,0014,Assign Blast Stocks
+0099,1302,Text Color
+0100,1302,Text Position
+0104,0013,Assign Health
+0104,0014,Assign Health
+0104,1602,Play Audio Concurrently
+0108,0901,Enable ANM Loop
+0108,1203,Enable Camera Shake Loop
+0108,1202,Additional Camera Point
+0108,1302,Text Region
+0110,1302,Text Color Indicator
+0112,1302,Text Padding
+0115,1302,Text Scale
+0116,0901,ANM Speed Multiplier
+0118,0007,Audio Link,cond,num
+0118,0015,Audio-Related Property
+0119,0901,Wait until End of ANM
+0119,1001,Wait until End of Fade
+0119,1202,Wait until End of Camera
+0119,1302,Text Alignment
+0119,1502,Wait until End of Music
+0119,1602,Wait until End of ADX
+0119,1603,Wait until End of Voice Line

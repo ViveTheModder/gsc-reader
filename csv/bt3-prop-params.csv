@@ -1,0 +1,39 @@
+prop-id,func-id,param-1,param-2,param-3,param-4
+0048,0013,item
+0048,0014,item
+0049,0013,item
+0049,0014,item
+0050,0013,item
+0050,0014,item
+0051,0013,item
+0051,0014,item
+0052,0013,item
+0052,0014,item
+0053,0013,item
+0053,0014,item
+0054,0013,item
+0054,0014,item
+0066,0013,Blast Stock Amount
+0067,0013,Character Index
+0067,1302,Red,Green,Blue,Opacity
+0070,0013,Ki (%)
+0072,0013,Health (%)
+0073,0013,Ki (%)
+0079,1302,Width,Height
+0084,1302,Type
+0097,0007,Condition,Scene ID
+0097,1302,Width,Height
+0098,0013,Blast Stock Amount
+0099,1302,Red,Green,Blue,Opacity
+0100,1302,Position (X),Position (Y)
+0104,0013,Health (%)
+0104,1602,Audio Channel ID
+0108,1202,Time (s),Position (X),Position (Y),Position (Z),Rotation (Y),Rotation (X),Rotation (Z)
+0108,1302,Region ID
+0110,1302,Enable Grey Text
+0112,1302,Padding (Vertical),Padding (Horizontal)
+0115,1302,Coefficient
+0116,0901,Coefficient
+0118,0007,Condition,Voice Line ID
+0118,0015,Voice Line ID,Character Index
+0119,1302,Alignment ID

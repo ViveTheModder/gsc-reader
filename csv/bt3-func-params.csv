@@ -1,0 +1,31 @@
+id,param-1,param-2,param-3,param-4,param-5,param-6,param-7,param-8,param-9,param-10,param-11,param-12,param-13,param-14,param-15
+0001,Time (s)
+0002,GSC Name
+0008,Event ID,Character ID
+0009,Battle Outcome ID
+0010,Map,Music,Battle Time (s),Referee,Enable Map Destruction
+0011,Team Index,Number of Teammates
+0012,Character Index,Character,Color,Damaged,COM Level,Z-Item #8,Health (%),Z-Item #1,Z-Item #2,Z-Item #3,Z-Item #4,Z-Item #5,Z-Item #6,Z-Item #7
+0016,Z-Points (Easy),Z-Points (Normal),Z-Points (Hard),Z-Item #1,Z-Item #2,Z-Item #3,Map #1,Map #2,Map #3,Character #1,Character #2,Character #3,Scenario #1,Scenario #2,Scenario #3
+0801,Character Index,Position (X),Position (Y),Position (Z),Rotation (X),Rotation (Y),Rotation (Z)
+0802,Character Index,Position (X),Position (Y),Position (Z)
+0803,Character Index,Rotation (X),Rotation (Y),Rotation (Z)
+0804,Character Index
+0805,Character Index
+0806,Character Index
+0807,Character Index
+0808,Character Index
+0809,Character Index
+0810,Character Index
+0901,Character Index,ANM Name
+1001,Time (s)
+1002,Time (s)
+1201,Position (X),Position (Y),Position (Z),Rotation (Y),Rotation (X),Rotation (Z)
+1202,Time (s),Position (X),Position (Y),Position (Z),Rotation (Y),Rotation (X),Rotation (Z)
+1204,Force/Intensity
+1301,String
+1501,Music
+1601,VAG ID
+1602,ADX ID
+1603,Character Index,Voice Line ID
+1701,Button ID

@@ -1,0 +1,47 @@
+id,name,param-1,param-2,param-3,param-4,param-5,param-6,param-7,param-8,param-9,param-10,param-11,param-12,param-13,param-14,param-15
+0001,Wait for Period of Time
+0002,Scenario Identifier,gsc
+0003,Scene Start
+0004,Scene End & Battle Start
+0005,Store Character Positions
+0006,Store VFX Switches
+0007,Store Conditional Properties
+0008,Post-Cutscene Event,event,chara
+0009,Battle End
+0010,Battle Settings,map,bgm,num,ref,num
+0011,Team Settings
+0012,Character Settings,num,chara,num,num,num,item,num,item,item,item,item,item,item,item
+0013,Store Player's Character Changes
+0014,Store Opponent's Character Changes
+0015,Store Audio-Related Properties
+0016,Rewards,num,num,num,item,item,item,map,map,map,chara,chara,chara,gsc,gsc,gsc
+0701,Load TXT PAK
+0702,Load LPS PAK
+0801,Assign Character Position & Rotation
+0802,Assign Character Position Only
+0803,Assign Character Rotation Only
+0804,Make Character Visible
+0805,Make Character Invisible
+0806,Enable Lingering Aura
+0807,Disable Lingering Aura
+0808,Enable Ki Charge Aura
+0809,Disable Ki Charge Aura
+0810,Enable MAX POWER Mode Explosion
+0901,Assign Animation,num,anm
+0902,Enable Character Movement
+1001,Trigger Fade-Out
+1002,Trigger Fade-In
+1003,Stop Current Fade
+1201,Primary Camera Point
+1202,Secondary Camera Point
+1203,Reset Battle Camera
+1204,Trigger Camera Shake
+1205,Stop Camera Shake
+1301,Load String in Memory (for debug reasons & no longer functional)
+1302,Subtitle Settings
+1501,Music Change,bgm
+1502,Turn Down/Off Previous Music Volume
+1601,Play Sound from SE_Battle.pak
+1602,Play Any ADX from Scenario
+1603,Play Character Voice Line
+1701,Freeze Cutscene until Button Press
