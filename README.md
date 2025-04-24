@@ -31,13 +31,17 @@ As for this folder, it contains the following files:
 ![image](https://github.com/user-attachments/assets/8adad4f0-7096-498e-8153-5ab5470632c3)
 
 ## GUI
-![image](https://github.com/user-attachments/assets/242e714c-9100-45da-9223-e58863405421)
+![image](https://github.com/user-attachments/assets/6c6a8ae0-e187-4e65-8da1-9153f1233cb6)
 
-![image](https://github.com/user-attachments/assets/d309cb6b-d021-4c9a-b5d1-1be921f5d0d7)
+![image](https://github.com/user-attachments/assets/b5db7819-8a11-4271-8958-0dad29002791)
 
-![image](https://github.com/user-attachments/assets/22c67650-c297-4378-9799-f13d6209f110)
+![image](https://github.com/user-attachments/assets/bc1eff17-f8ac-4b6b-97b3-856e27822df5)
 
-![image](https://github.com/user-attachments/assets/544c20bd-dce0-4885-b65a-8c522ce8090a)
+![image](https://github.com/user-attachments/assets/1a668582-3e4e-4d1a-a499-a6d95e8e2503)
+
+![image](https://github.com/user-attachments/assets/b83afa8c-07a3-4a74-808a-3444e5c2b898)
+
+![image](https://github.com/user-attachments/assets/17d007be-8208-49e7-95b6-84978ea89312)
 
 ## Output
 ![image](https://github.com/user-attachments/assets/3f9f7620-5f35-4ef0-a87f-ba44bac59692)
