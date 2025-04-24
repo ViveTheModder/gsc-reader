@@ -6,12 +6,12 @@ Swag Studio had 29 (``LittleEndian.java``) + 848 (``MainApp.java``) + 66 (``MsgB
 All of that, only to support Budokai Tenkaichi 3 GSCs...
 
 GSC Reader on the other hand has:
-* 184 (``App.java``);
+* 368 (``App.java``);
 * 308 (``GSC.java``);
 * 47 (``LittleEndian.java``);
-* 116 (``Main.java``).
+* 126 (``Main.java``).
   
-That is a total of **655 lines of code**, **288 lines less** than what Swag Studio had.
+That is a total of **849 lines of code**, **94 lines less** than what Swag Studio had.
 
 # Demonstration
 This folder contains 10 **GSC files from BT3**. However, **2 of them have been modified** to be deemed **faulty** and therefore **skipped**.

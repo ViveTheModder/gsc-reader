@@ -1,5 +1,5 @@
 package cmd;
-//GSC Reader by ViveTheModder
+//GSC Reader v1.1 by ViveTheModder
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -76,8 +76,13 @@ public class Main
 				String logPath=null;
 				while (gscFileRefs==null)
 				{
-					System.out.println("Specify folder containing GSC files:");
+					System.out.println("Specify folder containing GSC files.\nPress Enter to use the default path.");
 					String path = sc.nextLine();
+					if (path.equals("")) 
+					{
+						path = new File("").getAbsolutePath()+File.separator+"in";
+						new File(path).mkdir();
+					}
 					File tmp = new File(path);
 					if (tmp.isDirectory())
 					{
@@ -87,8 +92,13 @@ public class Main
 				}
 				while (logPath==null)
 				{
-					System.out.println("Specify folder where to output .log files: ");
+					System.out.println("Specify folder where to output .log files.\nPress Enter to use the default path.");
 					String path = sc.nextLine();
+					if (path.equals("")) 
+					{
+						path = new File("").getAbsolutePath()+File.separator+"out";
+						new File(path).mkdir();
+					}
 					File tmp = new File(path);
 					if (tmp.isDirectory()) logPath=path;
 				}
