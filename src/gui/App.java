@@ -93,7 +93,8 @@ public class App
 			}
 		}
 		
-		folderPaths[0] = gscFileRefs[0].getAbsolutePath();
+		folderPaths[0] = gscFileRefs[0].toPath().getParent().toString();
+		
 		GSC[] gscFiles = new GSC[gscFileRefs.length];
 		for (int i=0; i<gscFiles.length; i++)
 			gscFiles[i] = new GSC(gscFileRefs[i]);
