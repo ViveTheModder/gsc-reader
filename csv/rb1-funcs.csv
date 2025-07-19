@@ -1,0 +1,25 @@
+id,name,param-1,param-2,param-3,param-4,param-5,param-6,param-7,param-8,param-9,param-10,param-11,param-12,param-13,param-14,param-15
+01,Scene Start
+02,Scene End
+05,Battle Start
+07,Store Conditional Properties
+27,Freeze/Wait
+30,Play Sound Effect
+32,Play Character Voice Line
+34,Display Character
+35,Assign Character Position & Rotation (Cutscene)
+36,Assign Character Position & Rotation (Model)
+38,Assign Character Position & Rotation (Battle)
+39,Assign Animation
+40,Assign Facial Expressions
+44,Assign Eye Movement
+48,Enable Lingering Aura
+49,Enable Ki Charge Aura
+52,Primary Camera Point
+53,Secondary Camera Point
+56,Trigger Fade-Out
+57,Trigger Fade-In
+61,Change Scene Background
+64,Speed Line Effect
+67,Top & Bottom Black Bars
+76,Cutscene Mode (?)

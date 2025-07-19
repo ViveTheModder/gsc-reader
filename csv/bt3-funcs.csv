@@ -8,9 +8,9 @@ id,name,param-1,param-2,param-3,param-4,param-5,param-6,param-7,param-8,param-9,
 0007,Store Conditional Properties
 0008,Post-Cutscene Event,event,chara
 0009,Battle End
-0010,Battle Settings,map,bgm,num,ref,num
+0010,Battle Settings,map,bgm,num,ref,bool
 0011,Team Settings
-0012,Character Settings,num,chara,num,num,num,item,num,item,item,item,item,item,item,item
+0012,Character Settings,num,chara,num,bool,num,item,num,item,item,item,item,item,item,item
 0013,Store Player's Character Changes
 0014,Store Opponent's Character Changes
 0015,Store Audio-Related Properties

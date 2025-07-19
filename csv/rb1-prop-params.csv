@@ -1,0 +1,5 @@
+prop-id,func-id,param-1,param-2,param-3,param-4
+097,07,Number of Health Bars,Next Scene ID
+112,32,Audio ID
+116,05,Condition ID,Character Index,Character ID,Blast ID,COM Index,COM ID,COM Blast ID
+118,07,Condition ID,Audio ID

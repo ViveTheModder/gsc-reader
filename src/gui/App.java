@@ -1,5 +1,5 @@
 package gui;
-//GSC Reader v1.1 GUI by ViveTheModder
+//GSC Reader v1.2 GUI by ViveTheModder
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -39,7 +39,7 @@ public class App
 	private static final Font BOLD_M = new Font("Tahoma", Font.BOLD, 14);
 	private static final String HTML_DIV_START = "<html><div style='text-align: center; color: #dd4015;'>";
 	private static final String HTML_DIV_END = "</div></html>";
-	private static final String WINDOW_TITLE = "GSC Reader v1.1";
+	private static final String WINDOW_TITLE = "GSC Reader v1.2";
 	private static final Toolkit DEF_TOOLKIT = Toolkit.getDefaultToolkit();
 	private static final Image ICON_IMG = DEF_TOOLKIT.getImage(ClassLoader.getSystemResource("img/icon.png"));
 	
@@ -90,17 +90,17 @@ public class App
 			{
 				errorBeep();
 				JOptionPane.showMessageDialog(chooser, "This does NOT point to a folder. Try again!", WINDOW_TITLE, 0);
+				return null;
 			}
 		}
-		
 		folderPaths[0] = gscFileRefs[0].toPath().getParent().toString();
-		
+
 		GSC[] gscFiles = new GSC[gscFileRefs.length];
 		for (int i=0; i<gscFiles.length; i++)
 			gscFiles[i] = new GSC(gscFileRefs[i]);
 		return gscFiles;
 	}
-	private static void displayProgress(GSC[] gscFiles, File logFolder)
+	private static void displayProgress(GSC[] gscFiles, File logFolder, String[] args)
 	{
 		String[] progLabelTxt = {"Total GSC Progress","Current GSC Progress"};
 		//change settings for all progress bars (must be done before declaring them)
@@ -155,8 +155,8 @@ public class App
 			@Override
 			protected Void doInBackground() throws Exception 
 			{
-				int gscCnt=0, gscTotal = gscFiles.length;				
 				long start = System.currentTimeMillis();
+				int gscCnt=0, gscTotal = gscFiles.length;
 				String gscFilesMsg = " GSC files have ";
 				for (int i=0; i<gscFiles.length; i++)
 				{
@@ -167,13 +167,15 @@ public class App
 						Main.writeGscOutputToLog(gscFiles[i], logFolder.getAbsolutePath(), null);
 						progBars[0].setValue(gscCnt);
 					}
-					else gscTotal--;
-					progBars[0].setMaximum(gscTotal);
+					else
+					{
+						gscTotal--;
+						progBars[0].setMaximum(gscTotal);
+					}
 				}
 				long end = System.currentTimeMillis();
 				double time = (end-start)/1000.0;
 				if (gscTotal==1) gscFilesMsg = gscFilesMsg.replace("files have", "file has");
-				
 				frame.setVisible(false); 
 				frame.dispose();
 				DEF_TOOLKIT.beep();
@@ -188,7 +190,7 @@ public class App
 		Runnable runWinErrorSnd = (Runnable) DEF_TOOLKIT.getDesktopProperty("win.sound.exclamation");
 		if (runWinErrorSnd!=null) runWinErrorSnd.run();
 	}
-	private static void setApp()
+	private static void setApp(String[] args)
 	{
 		String[] folderNames = {"in","out"};
 		String[] pathLblText = {"Source Folder (GSC)","Destination Folder (LOG)"};
@@ -229,13 +231,11 @@ public class App
 			pathChkBoxes[i] = new JCheckBox("Use Default Directory");
 			pathTxtFields[i] = new JTextField();
 			pathLbls[i] = new JLabel(pathLblText[i]);
-			
 			pathChkBoxes[i].setToolTipText("Default Directory: "+defDir);
 			pathLbls[i].setFont(BOLD_M);
 			pathTxtFields[i].setMaximumSize(txtFieldSize);
 			pathTxtFields[i].setMinimumSize(txtFieldSize);
 			pathTxtFields[i].setPreferredSize(txtFieldSize);
-			
 			pathBoxes[i].add(pathTxtFields[i]);
 			pathBoxes[i].add(Box.createHorizontalStrut(8));
 			pathBoxes[i].add(openBtns[i]);
@@ -278,6 +278,7 @@ public class App
 					{
 						pathTxtFields[index].setText("");
 						pathTxtFields[index].setEditable(false);
+						openBtns[index].setEnabled(false);
 						folderPaths[index] = new File("").getAbsolutePath()+File.separator+folderNames[index];
 						new File(folderPaths[index]).mkdir();
 					}
@@ -285,6 +286,7 @@ public class App
 					{
 						folderPaths[index]="";
 						pathTxtFields[index].setEditable(true);
+						openBtns[index].setEnabled(true);
 					}
 				}
 			});
@@ -310,8 +312,11 @@ public class App
 					}
 					else 
 					{
-						gscFiles=null;
-						msg+="Source does NOT contain GSC files!\n";
+						if (!Main.recursive)
+						{
+							gscFiles=null;
+							msg+="Source does NOT contain GSC files!\n";
+						}
 					}
 				}
 				else 
@@ -332,7 +337,7 @@ public class App
 				if (msg.equals(""))
 				{
 					frame.setEnabled(false);
-					displayProgress(gscFiles,logFolder);
+					displayProgress(gscFiles,logFolder,args);
 					frame.setEnabled(true);
 				}
 				else 
@@ -358,7 +363,7 @@ public class App
 		try 
 		{
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			setApp();
+			setApp(args);
 		} 
 		catch (Exception e) 
 		{

@@ -1,0 +1,13 @@
+id,param-1,param-2,param-3,param-4,param-5,param-6,param-7,param-8,param-9,param-10,param-11,param-12,param-13,param-14,param-15
+27,Time (s)
+30,Audio ID
+32,TXT/LPS ID,Character Index,Unknown1,Unknown2
+34,Character Index,Enable Partner,Enable Model,num,bool,bool
+35,Character Index,Enable Partner,Position (X),Position (Y),Position (Z),Rotation (X),Rotation (Y),Rotation (Z),num,bool,num,num,num,num,num,num
+38,Character Index,Enable Partner,Position (X),Position (Y),Position (Z),Rotation (X),Rotation (Y),Rotation (Z),num,bool,num,num,num,num,num,num
+39,Character Index,Enable Partner,Speed,Enable Glow,ANM ID,num,bool,num,bool,num
+40,Character Index,Enable Partner,Unknown1,Extra Face ID,num,bool,num,num
+48,Character Index,Enable Partner,Enable Aura,num,bool,bool
+49,Character Index,Enable Partner,Enable Aura,num,bool,bool
+52,Unknown1,Position (X),Position (Y),Position (Z),Rotation (X),Rotation (Y),Rotation (Z)
+53,Time (s),Unknown1,Position (X),Position (Y),Position (Z),Rotation (X),Rotation (Y),Rotation (Z)

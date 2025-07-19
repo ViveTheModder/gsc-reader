@@ -1,5 +1,5 @@
 package cmd;
-//GSC Reader v1.1 by ViveTheModder
+//GSC Reader v1.2 by ViveTheModder
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,27 +11,21 @@ import gui.App;
 public class Main 
 {
 	private static final int MAX_COLS = 440;
-	public static int csvIndex;
+	public static boolean recursive=false;
+	public static int csvIndex, recursiveGscCnt;
 	public static final String CSV_PATH = "./csv/";
 	public static String currGame;
 	public static String[] csvNames;
 	public static String[][] csvContents;
 	
-	public static void writeGscOutputToLog(GSC gsc, String logPath, String[] args) throws IOException
+	public static void parseGsc(GSC gsc, String logPath, String[] args) throws IOException
 	{
-		boolean printText=false;
-		if (args!=null)
-		{
-			if (args[0].equals("-c")) printText=true; 
-		}
-		
-		File logFolder = new File(logPath);
-		if (!logFolder.exists()) logFolder.mkdir();
-		File log = new File(logPath+"/"+gsc.fileName+".log");
-		FileWriter fw = new FileWriter(log);
-		String output = gsc.read(printText);
-		fw.write(output);
-		fw.close();
+		long gscStart = System.currentTimeMillis();
+		String gscErrors = gsc.getGscErrors();
+		if (gscErrors.equals("")) writeGscOutputToLog(gsc,logPath,args);
+		else System.out.println("Skipping "+gsc.fileName+".gsc for the following reasons:\n"+gscErrors);
+		long gscEnd = System.currentTimeMillis();
+		System.out.println("Time required to read GSC info: "+(gscEnd-gscStart)/1000.0+" s");
 	}
 	public static void setCsvContentsAndNames(String paramType) throws IOException
 	{
@@ -65,16 +59,53 @@ public class Main
 			sc.close();
 		}
 	}
+	public static void traverse(File src, String logPath, String[] args) throws IOException
+	{
+		if (src.isDirectory())
+		{
+			File[] gscPaths = src.listFiles();
+			if (gscPaths!=null)
+			{
+				for (File path: gscPaths) traverse(path,logPath,args);
+			}
+		}
+		else if (src.isFile())
+		{
+			if (src.getName().toLowerCase().endsWith(".gsc"))
+			{
+				recursiveGscCnt++;
+				GSC gsc = new GSC(src);
+				parseGsc(gsc,logPath,args);
+			}
+		}
+	}
+	public static void writeGscOutputToLog(GSC gsc, String logPath, String[] args) throws IOException
+	{
+		boolean printText=false;
+		if (args!=null)
+		{
+			if (args[0].equals("-c")) printText=true; 
+		}
+		
+		File logFolder = new File(logPath);
+		if (!logFolder.exists()) logFolder.mkdir();
+		File log = new File(logPath+"/"+gsc.fileName+".log");
+		FileWriter fw = new FileWriter(log);
+		String output = gsc.read(printText);
+		fw.write(output);
+		fw.close();
+	}
 	public static void main(String[] args) throws IOException
 	{
 		if (args.length>0)
 		{
 			if (args[0].equals("-c"))
 			{
+				File gscDir=null;
 				File[] gscFileRefs=null;
 				Scanner sc = new Scanner(System.in);
 				String logPath=null;
-				while (gscFileRefs==null)
+				while (gscFileRefs==null && recursive==false)
 				{
 					System.out.println("Specify folder containing GSC files.\nPress Enter to use the default path.");
 					String path = sc.nextLine();
@@ -83,11 +114,20 @@ public class Main
 						path = new File("").getAbsolutePath()+File.separator+"in";
 						new File(path).mkdir();
 					}
-					File tmp = new File(path);
-					if (tmp.isDirectory())
+					else
 					{
-						File[] tmpFiles = tmp.listFiles((dir, name) -> name.toLowerCase().endsWith(".gsc"));
-						if (tmpFiles!=null && tmpFiles.length>0) gscFileRefs=tmpFiles;
+						System.out.println("If needed, enter Y to enable recursive GSC search.");
+						String option = sc.nextLine();
+						if (option.toUpperCase().equals("Y")) recursive=true;
+					}
+					gscDir = new File(path);
+					if (gscDir.isDirectory())
+					{
+						if (!recursive)
+						{
+							File[] tmpFiles = gscDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".gsc"));
+							if (tmpFiles!=null && tmpFiles.length>0) gscFileRefs=tmpFiles;
+						}
 					}
 				}
 				while (logPath==null)
@@ -103,20 +143,14 @@ public class Main
 					if (tmp.isDirectory()) logPath=path;
 				}
 				sc.close();
-				
-				GSC[] gscFiles = new GSC[gscFileRefs.length];
-				for (int i=0; i<gscFiles.length; i++) gscFiles[i] = new GSC(gscFileRefs[i]);
-				
 				long start = System.currentTimeMillis();
-				for (GSC gsc: gscFiles)
+				if (!recursive)
 				{
-					long gscStart = System.currentTimeMillis();
-					String gscErrors = gsc.getGscErrors();
-					if (gscErrors.equals("")) writeGscOutputToLog(gsc,logPath,args);
-					else System.out.println("Skipping "+gsc.fileName+".gsc for the following reasons:\n"+gscErrors);
-					long gscEnd = System.currentTimeMillis();
-					System.out.println("Time required to read GSC info: "+(gscEnd-gscStart)/1000.0+" s");
+					GSC[] gscFiles = new GSC[gscFileRefs.length];
+					for (int i=0; i<gscFiles.length; i++) gscFiles[i] = new GSC(gscFileRefs[i]);
+					for (GSC gsc: gscFiles) parseGsc(gsc,logPath,args);
 				}
+				else traverse(gscDir,logPath,args);
 				long finish = System.currentTimeMillis();
 				System.out.println("\nTotal time elapsed: "+(finish-start)/1000.0+" s");
 			}

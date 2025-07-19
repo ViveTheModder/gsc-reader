@@ -109,15 +109,23 @@ public class GSC
 					
 					if (!paramType.equals("num")) 
 					{
-						Main.setCsvContentsAndNames(paramType);
-						if (paramVal==65535) param = "Immediate"; //65535 (unsigned), -1 (signed)
-						else if (paramVal>=0) 
+						if (paramType.equals("bool"))
 						{
-							if (paramVal>=Main.csvContents[Main.csvIndex].length)
-								param = "Unknown (Value: "+paramVal+")";
-							else param = Main.csvContents[Main.csvIndex][paramVal]+opp;
+							if (paramVal==1) param="True";
+							else param="False";
 						}
-						else param="N/A";
+						else
+						{
+							Main.setCsvContentsAndNames(paramType);
+							if (paramVal==65535) param="Immediate"; //65535 (unsigned), -1 (signed)
+							else if (paramVal>=0) 
+							{
+								if (Main.csvContents[Main.csvIndex][paramVal]==null)
+									param = "Unknown (Value: "+paramVal+")";
+								else param = Main.csvContents[Main.csvIndex][paramVal]+opp;
+							}
+							else param="N/A";
+						}
 					}
 				}
 				String paramName = "* Parameter "+i;
@@ -166,7 +174,7 @@ public class GSC
 		if (!isFunc) fileNameSuffix = "-props";
 		if (isParam) fileNameSuffix = fileNameSuffix.substring(0,5)+"-params";
 		File csv = new File(Main.CSV_PATH+game+fileNameSuffix+".csv");
-		if (!game.equals("bt3")) return null;
+		if (game.equals("bt2")) return null;
 		
 		Scanner sc = new Scanner(csv);
 		String[] info=null;
