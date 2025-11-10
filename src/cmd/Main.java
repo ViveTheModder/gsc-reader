@@ -1,5 +1,5 @@
 package cmd;
-//GSC Reader v1.2 by ViveTheModder
+//GSC Reader v1.3 by ViveTheJoestar
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,8 +8,7 @@ import java.util.Scanner;
 
 import gui.App;
 
-public class Main 
-{
+public class Main {
 	private static final int MAX_COLS = 440;
 	public static boolean recursive=false;
 	public static int csvIndex, recursiveGscCnt;
@@ -18,8 +17,7 @@ public class Main
 	public static String[] csvNames;
 	public static String[][] csvContents;
 	
-	public static void parseGsc(GSC gsc, String logPath, String[] args) throws IOException
-	{
+	public static void parseGsc(GSC gsc, String logPath, String[] args) throws IOException {
 		long gscStart = System.currentTimeMillis();
 		String gscErrors = gsc.getGscErrors();
 		if (gscErrors.equals("")) writeGscOutputToLog(gsc,logPath,args);
@@ -27,17 +25,14 @@ public class Main
 		long gscEnd = System.currentTimeMillis();
 		System.out.println("Time required to read GSC info: "+(gscEnd-gscStart)/1000.0+" s");
 	}
-	public static void setCsvContentsAndNames(String paramType) throws IOException
-	{
+	public static void setCsvContentsAndNames(String paramType) throws IOException {
 		File csvFolder = new File(CSV_PATH+currGame+"/");
 		File[] csvFiles = csvFolder.listFiles((dir, name) -> (name.toLowerCase().endsWith(".csv")));
 		
 		int csvCnt = csvFiles.length;
-		if (csvNames==null)
-		{
+		if (csvNames==null) {
 			csvNames = new String[csvCnt];
-			for (int i=0; i<csvNames.length; i++)
-			{
+			for (int i=0; i<csvNames.length; i++) {
 				String fileName = csvFiles[i].getName();
 				csvNames[i] = fileName.substring(0, fileName.length()-4);
 			}
@@ -46,11 +41,9 @@ public class Main
 		
 		csvIndex = Arrays.binarySearch(csvNames, paramType);
 		if (csvIndex==-1) return;
-		if (csvContents[csvIndex][0]==null)
-		{
+		if (csvContents[csvIndex][0]==null) {
 			Scanner sc = new Scanner(csvFiles[csvIndex]);
-			while (sc.hasNextLine())
-			{
+			while (sc.hasNextLine()) {
 				String line = sc.nextLine();
 				String[] lineAsArr = line.split(",");
 				int nameIndex = Integer.parseInt(lineAsArr[0]);
@@ -59,34 +52,26 @@ public class Main
 			sc.close();
 		}
 	}
-	public static void traverse(File src, String logPath, String[] args) throws IOException
-	{
-		if (src.isDirectory())
-		{
+	public static void traverse(File src, String logPath, String[] args) throws IOException {
+		if (src.isDirectory()) {
 			File[] gscPaths = src.listFiles();
-			if (gscPaths!=null)
-			{
+			if (gscPaths!=null) {
 				for (File path: gscPaths) traverse(path,logPath,args);
 			}
 		}
-		else if (src.isFile())
-		{
-			if (src.getName().toLowerCase().endsWith(".gsc"))
-			{
+		else if (src.isFile()) {
+			if (src.getName().toLowerCase().endsWith(".gsc")) {
 				recursiveGscCnt++;
 				GSC gsc = new GSC(src);
 				parseGsc(gsc,logPath,args);
 			}
 		}
 	}
-	public static void writeGscOutputToLog(GSC gsc, String logPath, String[] args) throws IOException
-	{
+	public static void writeGscOutputToLog(GSC gsc, String logPath, String[] args) throws IOException {
 		boolean printText=false;
-		if (args!=null)
-		{
+		if (args!=null) {
 			if (args[0].equals("-c")) printText=true; 
 		}
-		
 		File logFolder = new File(logPath);
 		if (!logFolder.exists()) logFolder.mkdir();
 		File log = new File(logPath+"/"+gsc.fileName+".log");
@@ -95,47 +80,41 @@ public class Main
 		fw.write(output);
 		fw.close();
 	}
-	public static void main(String[] args) throws IOException
-	{
-		if (args.length>0)
-		{
-			if (args[0].equals("-c"))
-			{
+	public static void main(String[] args) throws IOException {
+		if (args.length>0) {
+			if (args[0].equals("-c")) {
 				File gscDir=null;
 				File[] gscFileRefs=null;
 				Scanner sc = new Scanner(System.in);
 				String logPath=null;
-				while (gscFileRefs==null && recursive==false)
-				{
+				while (gscDir==null && recursive==false) {
 					System.out.println("Specify folder containing GSC files.\nPress Enter to use the default path.");
 					String path = sc.nextLine();
-					if (path.equals("")) 
-					{
+					if (path.equals("")) {
 						path = new File("").getAbsolutePath()+File.separator+"in";
 						new File(path).mkdir();
 					}
-					else
-					{
+					else {
 						System.out.println("If needed, enter Y to enable recursive GSC search.");
 						String option = sc.nextLine();
 						if (option.toUpperCase().equals("Y")) recursive=true;
 					}
 					gscDir = new File(path);
-					if (gscDir.isDirectory())
-					{
-						if (!recursive)
-						{
+					if (gscDir.isDirectory()) {
+						if (!recursive) {
 							File[] tmpFiles = gscDir.listFiles((dir, name) -> name.toLowerCase().endsWith(".gsc"));
 							if (tmpFiles!=null && tmpFiles.length>0) gscFileRefs=tmpFiles;
+							else {
+								gscDir=null;
+								System.out.println("Folder contains no GSC files!");
+							}
 						}
 					}
 				}
-				while (logPath==null)
-				{
+				while (logPath==null) {
 					System.out.println("Specify folder where to output .log files.\nPress Enter to use the default path.");
 					String path = sc.nextLine();
-					if (path.equals("")) 
-					{
+					if (path.equals("")) {
 						path = new File("").getAbsolutePath()+File.separator+"out";
 						new File(path).mkdir();
 					}
@@ -144,8 +123,7 @@ public class Main
 				}
 				sc.close();
 				long start = System.currentTimeMillis();
-				if (!recursive)
-				{
+				if (!recursive) {
 					GSC[] gscFiles = new GSC[gscFileRefs.length];
 					for (int i=0; i<gscFiles.length; i++) gscFiles[i] = new GSC(gscFileRefs[i]);
 					for (GSC gsc: gscFiles) parseGsc(gsc,logPath,args);
