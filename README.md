@@ -6,12 +6,12 @@ Swag Studio had 29 (``LittleEndian.java``) + 848 (``MainApp.java``) + 66 (``MsgB
 All of that, only to support Budokai Tenkaichi 3 GSCs...
 
 GSC Reader on the other hand has:
-* 330 (``App.java``);
-* 263 (``GSC.java``);
+* 331 (``App.java``);
+* 282 (``GSC.java``);
 * 40 (``LittleEndian.java``);
-* 138 (``Main.java``).
+* 144 (``Main.java``).
   
-That is a total of **771 lines of code**, **172 lines less** than what Swag Studio had.
+That is a total of **797 lines of code**, **146 lines less** than what Swag Studio had.
 
 # Demonstration
 This folder contains 10 **GSC files from BT3**. However, **2 of them have been modified** to be deemed **faulty** and therefore **skipped**.
@@ -25,10 +25,14 @@ As for this folder, it contains the following files:
 
 ![image](https://github.com/user-attachments/assets/1fcaab5f-c1d5-4da0-abe9-7ba88425f2f5)
 
-## CLI
-![image](https://github.com/user-attachments/assets/6c9cd56e-78e5-4a94-ace0-660234d60ded)
+## CLI (Different GSC Samples)
+<img width="1115" height="109" alt="image" src="https://github.com/user-attachments/assets/cc0cafca-812e-4a9b-a610-b64aec0521ed" />
 
-![image](https://github.com/user-attachments/assets/8adad4f0-7096-498e-8153-5ab5470632c3)
+<img width="747" height="52" alt="image" src="https://github.com/user-attachments/assets/75289eea-fc27-4073-bd6d-ed10b9f59635" />
+
+<img width="1123" height="759" alt="image" src="https://github.com/user-attachments/assets/24fc9f8f-255e-4669-a300-bd5fb9f48c51" />
+
+<img width="438" height="651" alt="image" src="https://github.com/user-attachments/assets/200a1568-e6bb-4859-beb5-98c7a4664667" />
 
 ## GUI
 ![image](https://github.com/user-attachments/assets/6c6a8ae0-e187-4e65-8da1-9153f1233cb6)
